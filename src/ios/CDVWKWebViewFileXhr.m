@@ -377,6 +377,10 @@ NS_ASSUME_NONNULL_BEGIN
     }
     
     __block NSMutableURLRequest *request = [NSMutableURLRequest requestWithURL:url];
+   
+    NSString *value = [self.commandDelegate.settings cdvwkStringForKey:@"originheader"];
+    [request setValue:value forHTTPHeaderField:@"Origin"];
+    
     if (method.length)
         request.HTTPMethod = [method uppercaseString];
     

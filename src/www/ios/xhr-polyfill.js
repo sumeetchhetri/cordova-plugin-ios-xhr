@@ -1212,6 +1212,9 @@
   window.XMLHttpRequest.prototype.open = function (method, url, async, user, password)
   {
     this._context.method = !method ? "GET" : method.toUpperCase();  // FortifyFalsePositive
+    if(url.indexOf(" ")!=-1) {
+        url = url.replace(/ /g, "%20");
+    }
     this._context.url = url;
     this._context.async = async === undefined ? true : async;
     this._context.user = user;
